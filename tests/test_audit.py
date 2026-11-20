@@ -395,11 +395,16 @@ class TestModulPort(unittest.TestCase):
         self.assertEqual(next(f for f in findings if f.kode == "PORT_TERBUKA_6379").level, Level.HIGH)
         self.assertIn({"port": 6379, "layanan": "Redis"}, info["port_terbuka"])
 
-        def test_port_tertutup_tidak_dilaporkan(self):
-        findings, info = pindai_port("127.0.0.1", timeout=0.3)
+    def test_port_tertutup_tidak_dilaporkan(self):
+        # Sengaja TIDAK memakai DAFTAR_PORT_BAWAAN: di Windows (termasuk runner CI), port 135
+        # (RPC) dan 445 (SMB) biasanya memang terbuka secara default karena layanan inti OS,
+        # jadi tes "semua port tertutup" tidak boleh bergantung pada port nyata yang statusnya
+        # beda-beda antar mesin. Pakai daftar port uji sendiri yang pasti tidak dipakai apa pun.
+        daftar_uji = ((65432, Level.LOW, "PortUjiTidakAda", "Hanya untuk tes, tidak ada layanan nyata"),)
+        findings, info = pindai_port("127.0.0.1", timeout=0.3, daftar_port=daftar_uji)
         self.assertEqual(findings, [])
         self.assertEqual(info["port_terbuka"], [])
-        
+
     def test_port_audit_tidak_disertakan_dalam_pemindaian(self):
         from auditkeamananweb.modul_port import DAFTAR_PORT_BAWAAN
         portnya = {p for p, *_ in DAFTAR_PORT_BAWAAN}
