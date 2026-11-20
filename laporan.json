@@ -1,0 +1,499 @@
+[
+  {
+    "target": "badssl.com",
+    "status": "DIPERIKSA",
+    "hostname": "badssl.com",
+    "port": 443,
+    "skema": "https",
+    "path": "/",
+    "skor": 64,
+    "grade": "C",
+    "findings": [
+      {
+        "modul": "HTTP",
+        "kode": "HDR_HSTS_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Header HSTS tidak ada",
+        "detail": "Browser tidak dipaksa memakai HTTPS (rentan downgrade/SSL stripping).",
+        "rekomendasi": "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_CSP_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Content-Security-Policy tidak ada",
+        "detail": "Tanpa CSP, dampak XSS/injeksi konten lebih besar.",
+        "rekomendasi": "Mulai dari CSP ketat, mis. default-src 'self'; lalu longgarkan seperlunya."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_ANTI_CLICKJACKING_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Perlindungan clickjacking tidak ada",
+        "detail": "Tidak ada X-Frame-Options maupun CSP frame-ancestors yang valid.",
+        "rekomendasi": "Tambahkan Content-Security-Policy: frame-ancestors 'self' (atau X-Frame-Options: SAMEORIGIN)."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_NOSNIFF_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "X-Content-Type-Options: nosniff tidak ada",
+        "detail": "Browser boleh menebak MIME type (MIME sniffing).",
+        "rekomendasi": "X-Content-Type-Options: nosniff"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_REFERRER_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Referrer-Policy tidak ada",
+        "detail": "URL halaman bisa bocor lewat header Referer ke situs lain.",
+        "rekomendasi": "Referrer-Policy: strict-origin-when-cross-origin"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_PERMISSIONS_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Permissions-Policy tidak ada",
+        "detail": "Fitur browser (kamera, mikrofon, geolokasi, dst.) tidak dibatasi eksplisit.",
+        "rekomendasi": "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "BANNER_TERBUKA",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Banner server membuka versi/teknologi",
+        "detail": "Server: nginx/1.10.3 (Ubuntu)",
+        "rekomendasi": "Sembunyikan versi (mis. server_tokens off / ServerTokens Prod) dan hapus X-Powered-By."
+      }
+    ],
+    "info": {
+      "tls": {
+        "protokol": "TLSv1.2",
+        "cipher_suite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "bit_cipher": 128,
+        "subjek": "*.badssl.com",
+        "penerbit": "YR1",
+        "verifikasi_sertifikat": "OK",
+        "tanggal_kadaluarsa": "2026-12-28T20:02:55+00:00",
+        "sisa_hari": 39
+      },
+      "http": {
+        "status": 200,
+        "url_akhir": "https://badssl.com/",
+        "rantai_redirect": [
+          "https://badssl.com/"
+        ],
+        "jumlah_cookie": 0,
+        "ukuran_body_byte": 11673,
+        "body_terpotong": false
+      }
+    },
+    "catatan": [],
+    "waktu_audit": "2026-11-19T06:11:39+00:00"
+  },
+  {
+    "target": "https://expired.badssl.com",
+    "status": "DIPERIKSA",
+    "hostname": "expired.badssl.com",
+    "port": 443,
+    "skema": "https",
+    "path": "/",
+    "skor": 39,
+    "grade": "D",
+    "findings": [
+      {
+        "modul": "TLS",
+        "kode": "TLS_CERT_EXPIRED",
+        "level": "CRITICAL",
+        "pengurangan_skor": 25,
+        "judul": "Sertifikat kedaluwarsa",
+        "detail": "Pesan verifikasi: certificate has expired (kode OpenSSL 10).",
+        "rekomendasi": "Gunakan sertifikat dari CA tepercaya yang mencakup hostname ini dan rantai yang lengkap."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_HSTS_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Header HSTS tidak ada",
+        "detail": "Browser tidak dipaksa memakai HTTPS (rentan downgrade/SSL stripping).",
+        "rekomendasi": "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_CSP_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Content-Security-Policy tidak ada",
+        "detail": "Tanpa CSP, dampak XSS/injeksi konten lebih besar.",
+        "rekomendasi": "Mulai dari CSP ketat, mis. default-src 'self'; lalu longgarkan seperlunya."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_ANTI_CLICKJACKING_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Perlindungan clickjacking tidak ada",
+        "detail": "Tidak ada X-Frame-Options maupun CSP frame-ancestors yang valid.",
+        "rekomendasi": "Tambahkan Content-Security-Policy: frame-ancestors 'self' (atau X-Frame-Options: SAMEORIGIN)."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_NOSNIFF_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "X-Content-Type-Options: nosniff tidak ada",
+        "detail": "Browser boleh menebak MIME type (MIME sniffing).",
+        "rekomendasi": "X-Content-Type-Options: nosniff"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_REFERRER_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Referrer-Policy tidak ada",
+        "detail": "URL halaman bisa bocor lewat header Referer ke situs lain.",
+        "rekomendasi": "Referrer-Policy: strict-origin-when-cross-origin"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_PERMISSIONS_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Permissions-Policy tidak ada",
+        "detail": "Fitur browser (kamera, mikrofon, geolokasi, dst.) tidak dibatasi eksplisit.",
+        "rekomendasi": "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "BANNER_TERBUKA",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Banner server membuka versi/teknologi",
+        "detail": "Server: nginx/1.10.3 (Ubuntu)",
+        "rekomendasi": "Sembunyikan versi (mis. server_tokens off / ServerTokens Prod) dan hapus X-Powered-By."
+      }
+    ],
+    "info": {
+      "tls": {
+        "verifikasi_sertifikat": "GAGAL: certificate has expired",
+        "protokol": "TLSv1.2",
+        "cipher_suite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "bit_cipher": 128,
+        "tanggal_kadaluarsa": "2015-04-12T23:59:59+00:00",
+        "sisa_hari": -4239
+      },
+      "http": {
+        "status": 200,
+        "url_akhir": "https://expired.badssl.com/",
+        "rantai_redirect": [
+          "https://expired.badssl.com/"
+        ],
+        "jumlah_cookie": 0,
+        "ukuran_body_byte": 494,
+        "body_terpotong": false
+      }
+    },
+    "catatan": [],
+    "waktu_audit": "2026-11-19T06:11:51+00:00"
+  },
+  {
+    "target": "https://self-signed.badssl.com",
+    "status": "DIPERIKSA",
+    "hostname": "self-signed.badssl.com",
+    "port": 443,
+    "skema": "https",
+    "path": "/",
+    "skor": 49,
+    "grade": "D",
+    "findings": [
+      {
+        "modul": "TLS",
+        "kode": "TLS_CERT_SELF_SIGNED",
+        "level": "HIGH",
+        "pengurangan_skor": 15,
+        "judul": "Sertifikat self-signed",
+        "detail": "Pesan verifikasi: self-signed certificate (kode OpenSSL 18).",
+        "rekomendasi": "Gunakan sertifikat dari CA tepercaya yang mencakup hostname ini dan rantai yang lengkap."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_HSTS_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Header HSTS tidak ada",
+        "detail": "Browser tidak dipaksa memakai HTTPS (rentan downgrade/SSL stripping).",
+        "rekomendasi": "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_CSP_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Content-Security-Policy tidak ada",
+        "detail": "Tanpa CSP, dampak XSS/injeksi konten lebih besar.",
+        "rekomendasi": "Mulai dari CSP ketat, mis. default-src 'self'; lalu longgarkan seperlunya."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_ANTI_CLICKJACKING_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Perlindungan clickjacking tidak ada",
+        "detail": "Tidak ada X-Frame-Options maupun CSP frame-ancestors yang valid.",
+        "rekomendasi": "Tambahkan Content-Security-Policy: frame-ancestors 'self' (atau X-Frame-Options: SAMEORIGIN)."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_NOSNIFF_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "X-Content-Type-Options: nosniff tidak ada",
+        "detail": "Browser boleh menebak MIME type (MIME sniffing).",
+        "rekomendasi": "X-Content-Type-Options: nosniff"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_REFERRER_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Referrer-Policy tidak ada",
+        "detail": "URL halaman bisa bocor lewat header Referer ke situs lain.",
+        "rekomendasi": "Referrer-Policy: strict-origin-when-cross-origin"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_PERMISSIONS_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Permissions-Policy tidak ada",
+        "detail": "Fitur browser (kamera, mikrofon, geolokasi, dst.) tidak dibatasi eksplisit.",
+        "rekomendasi": "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "BANNER_TERBUKA",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Banner server membuka versi/teknologi",
+        "detail": "Server: nginx/1.10.3 (Ubuntu)",
+        "rekomendasi": "Sembunyikan versi (mis. server_tokens off / ServerTokens Prod) dan hapus X-Powered-By."
+      }
+    ],
+    "info": {
+      "tls": {
+        "verifikasi_sertifikat": "GAGAL: self-signed certificate",
+        "catatan_tls": "Info sesi tidak dapat diambil ulang: TimeoutError: timed out",
+        "sisa_hari": null
+      },
+      "http": {
+        "status": 200,
+        "url_akhir": "https://self-signed.badssl.com/",
+        "rantai_redirect": [
+          "https://self-signed.badssl.com/"
+        ],
+        "jumlah_cookie": 0,
+        "ukuran_body_byte": 502,
+        "body_terpotong": false
+      }
+    },
+    "catatan": [],
+    "waktu_audit": "2026-11-19T06:11:58+00:00"
+  },
+  {
+    "target": "https://wrong.host.badssl.com",
+    "status": "DIPERIKSA",
+    "hostname": "wrong.host.badssl.com",
+    "port": 443,
+    "skema": "https",
+    "path": "/",
+    "skor": 49,
+    "grade": "D",
+    "findings": [
+      {
+        "modul": "TLS",
+        "kode": "TLS_HOSTNAME_MISMATCH",
+        "level": "HIGH",
+        "pengurangan_skor": 15,
+        "judul": "Hostname tidak cocok dengan sertifikat",
+        "detail": "Pesan verifikasi: Hostname mismatch, certificate is not valid for 'wrong.host.badssl.com'. (kode OpenSSL 62).",
+        "rekomendasi": "Gunakan sertifikat dari CA tepercaya yang mencakup hostname ini dan rantai yang lengkap."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_HSTS_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Header HSTS tidak ada",
+        "detail": "Browser tidak dipaksa memakai HTTPS (rentan downgrade/SSL stripping).",
+        "rekomendasi": "Strict-Transport-Security: max-age=31536000; includeSubDomains"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_CSP_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Content-Security-Policy tidak ada",
+        "detail": "Tanpa CSP, dampak XSS/injeksi konten lebih besar.",
+        "rekomendasi": "Mulai dari CSP ketat, mis. default-src 'self'; lalu longgarkan seperlunya."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_ANTI_CLICKJACKING_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Perlindungan clickjacking tidak ada",
+        "detail": "Tidak ada X-Frame-Options maupun CSP frame-ancestors yang valid.",
+        "rekomendasi": "Tambahkan Content-Security-Policy: frame-ancestors 'self' (atau X-Frame-Options: SAMEORIGIN)."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_NOSNIFF_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "X-Content-Type-Options: nosniff tidak ada",
+        "detail": "Browser boleh menebak MIME type (MIME sniffing).",
+        "rekomendasi": "X-Content-Type-Options: nosniff"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_REFERRER_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Referrer-Policy tidak ada",
+        "detail": "URL halaman bisa bocor lewat header Referer ke situs lain.",
+        "rekomendasi": "Referrer-Policy: strict-origin-when-cross-origin"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_PERMISSIONS_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Permissions-Policy tidak ada",
+        "detail": "Fitur browser (kamera, mikrofon, geolokasi, dst.) tidak dibatasi eksplisit.",
+        "rekomendasi": "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "BANNER_TERBUKA",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Banner server membuka versi/teknologi",
+        "detail": "Server: nginx/1.10.3 (Ubuntu)",
+        "rekomendasi": "Sembunyikan versi (mis. server_tokens off / ServerTokens Prod) dan hapus X-Powered-By."
+      }
+    ],
+    "info": {
+      "tls": {
+        "verifikasi_sertifikat": "GAGAL: Hostname mismatch, certificate is not valid for 'wrong.host.badssl.com'.",
+        "protokol": "TLSv1.2",
+        "cipher_suite": "ECDHE-RSA-AES128-GCM-SHA256",
+        "bit_cipher": 128,
+        "tanggal_kadaluarsa": "2026-12-28T20:02:55+00:00",
+        "sisa_hari": 39
+      },
+      "http": {
+        "status": 200,
+        "url_akhir": "https://wrong.host.badssl.com/",
+        "rantai_redirect": [
+          "https://wrong.host.badssl.com/"
+        ],
+        "jumlah_cookie": 0,
+        "ukuran_body_byte": 500,
+        "body_terpotong": false
+      }
+    },
+    "catatan": [],
+    "waktu_audit": "2026-11-19T06:12:10+00:00"
+  },
+  {
+    "target": "http://example.com",
+    "status": "DIPERIKSA",
+    "hostname": "example.com",
+    "port": 80,
+    "skema": "http",
+    "path": "/",
+    "skor": 60,
+    "grade": "C",
+    "findings": [
+      {
+        "modul": "TLS",
+        "kode": "TLS_TANPA_ENKRIPSI",
+        "level": "HIGH",
+        "pengurangan_skor": 15,
+        "judul": "Target dilayani lewat HTTP tanpa enkripsi",
+        "detail": "http://example.com/ tidak memakai TLS.",
+        "rekomendasi": "Layani situs lewat HTTPS dan arahkan seluruh trafik HTTP ke HTTPS."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_CSP_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Content-Security-Policy tidak ada",
+        "detail": "Tanpa CSP, dampak XSS/injeksi konten lebih besar.",
+        "rekomendasi": "Mulai dari CSP ketat, mis. default-src 'self'; lalu longgarkan seperlunya."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_ANTI_CLICKJACKING_HILANG",
+        "level": "MEDIUM",
+        "pengurangan_skor": 8,
+        "judul": "Perlindungan clickjacking tidak ada",
+        "detail": "Tidak ada X-Frame-Options maupun CSP frame-ancestors yang valid.",
+        "rekomendasi": "Tambahkan Content-Security-Policy: frame-ancestors 'self' (atau X-Frame-Options: SAMEORIGIN)."
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_NOSNIFF_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "X-Content-Type-Options: nosniff tidak ada",
+        "detail": "Browser boleh menebak MIME type (MIME sniffing).",
+        "rekomendasi": "X-Content-Type-Options: nosniff"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_REFERRER_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Referrer-Policy tidak ada",
+        "detail": "URL halaman bisa bocor lewat header Referer ke situs lain.",
+        "rekomendasi": "Referrer-Policy: strict-origin-when-cross-origin"
+      },
+      {
+        "modul": "HTTP",
+        "kode": "HDR_PERMISSIONS_POLICY_HILANG",
+        "level": "LOW",
+        "pengurangan_skor": 3,
+        "judul": "Permissions-Policy tidak ada",
+        "detail": "Fitur browser (kamera, mikrofon, geolokasi, dst.) tidak dibatasi eksplisit.",
+        "rekomendasi": "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+      }
+    ],
+    "info": {
+      "tls": {
+        "catatan": "Skema HTTP: pemeriksaan TLS tidak berlaku."
+      },
+      "http": {
+        "status": 200,
+        "url_akhir": "http://example.com/",
+        "rantai_redirect": [
+          "http://example.com/"
+        ],
+        "jumlah_cookie": 0,
+        "ukuran_body_byte": 577,
+        "body_terpotong": false
+      }
+    },
+    "catatan": [],
+    "waktu_audit": "2026-11-19T06:12:22+00:00"
+  }
+]

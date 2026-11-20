@@ -1,0 +1,7 @@
+# Daftar target (satu per baris). Baris kosong dan komentar (#) diabaikan.
+# Target yang tidak ada di daftar izin akan DILEWATI ("SKIPPED (Unauthorized)").
+badssl.com
+https://expired.badssl.com
+https://self-signed.badssl.com
+https://wrong.host.badssl.com
+http://example.com

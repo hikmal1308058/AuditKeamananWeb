@@ -1,0 +1,4 @@
+# Project ini hanya memakai pustaka standar Python (3.9+).
+# Paket di bawah OPSIONAL: dipakai agar "sisa hari sertifikat" tetap terbaca pada
+# sertifikat yang gagal verifikasi (self-signed, hostname salah, dst.).
+cryptography>=41

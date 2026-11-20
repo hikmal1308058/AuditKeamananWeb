@@ -1,0 +1,4 @@
+# Hanya dibutuhkan untuk MEMBANGUN AuditKeamananWeb.exe (lihat build_exe.bat).
+# Menjalankan program dari source (python -m auditkeamananweb / python gui_desktop.py)
+# tidak membutuhkan paket apa pun di luar pustaka standar Python.
+pyinstaller>=6.0

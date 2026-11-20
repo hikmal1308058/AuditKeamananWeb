@@ -1,0 +1,6 @@
+# Daftar domain yang BOLEH diaudit: milik sendiri atau ada izin tertulis dari pemiliknya.
+# Domain uji bawaan (localhost, 127.0.0.1, example.com/.org/.net, badssl.com) sudah otomatis diizinkan.
+#
+# Contoh (hapus tanda # dan ganti dengan domain Anda):
+# kampus-saya.ac.id
+# *.kampus-saya.ac.id
