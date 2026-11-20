@@ -395,11 +395,11 @@ class TestModulPort(unittest.TestCase):
         self.assertEqual(next(f for f in findings if f.kode == "PORT_TERBUKA_6379").level, Level.HIGH)
         self.assertIn({"port": 6379, "layanan": "Redis"}, info["port_terbuka"])
 
-    def test_port_tertutup_tidak_dilaporkan(self):
+        def test_port_tertutup_tidak_dilaporkan(self):
         findings, info = pindai_port("127.0.0.1", timeout=0.3)
         self.assertEqual(findings, [])
         self.assertEqual(info["port_terbuka"], [])
-
+        
     def test_port_audit_tidak_disertakan_dalam_pemindaian(self):
         from auditkeamananweb.modul_port import DAFTAR_PORT_BAWAAN
         portnya = {p for p, *_ in DAFTAR_PORT_BAWAAN}
